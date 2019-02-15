@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "THÊM SẢN PHẨM";
+    ViewBag.ID = "Thêm sản phẩm";
+
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@using WebAppProwin.Areas.Admin.Models
+@model ViewSanPham
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ThemSanPham</title>
+</head>
+<body>
+    <div>
+        <form action="ThemSanPham" method="post">
+            <div class="row">
+                <input type="text" name="TenSP" placeholder="Tên Sản Phẩm" />
+            </div>
+            <div>
+                <label>Nhóm Sản Phẩm</label>
+                <select name="MaTH">
+                    @foreach (var item in Model.NhomSP)
+                    {
+                        <option value="@item.MaTH">@item.TenThuongHieu</option>
+                    }
+                </select>
+                </div>
+            <div>
+                <label>Album</label>
+                <select name="MaAlbum">
+                    @foreach (var item in Model.albums)
+                    {
+                        <option value="@item.MaAlbum">@item.TenAlbum</option>
+                    }
+                </select>
+                </div>
+            <div>   
+                <label>Danh Muc</label>
+                <select name="MaDMC">
+                    @foreach (var item in Model.DMCons)
+                    {
+                        <option value="@item.MaDMC">@item.TenDM</option>
+                    }
+                </select>
+            </div>
+            <div>
+                <input type="number" name="GiaSP" placeholder="Đơn Giá" min="0"/>
+            </div>
+            <div>
+                <textarea type="text" name="Mota" placeholder="Mô Tả"></textarea>
+            </div>
+            <div>
+                <input type="text" name="Sale" placeholder="Sale" />
+            </div>
+            <div>
+                <textarea name="NoiDung" placeholder="Nội dung"></textarea>
+            </div> 
+            <input type="submit" value="Hoàn Thành" />
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,98 @@
+﻿<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/css/bootstrap-select.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/js/bootstrap-select.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "ChiTietSP";
+    ViewBag.ID = "Danh Sách";
+}
+@using WebAppProwin.Areas.Admin.Models
+@model ViewChiTiet
+    <h1>Thêm mẫu</h1>
+<div>
+    <div>
+        @using (Html.BeginForm("ThemMau", "SanPham", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div>
+                <input type="text" placeholder="Ten Mau" name="TenMau" />
+            </div>
+            <div>
+                <label>Image</label>
+                <input type="file" multiple="multiple" value="Tải ảnh lên" name="img" />
+            </div>
+            <div>
+                <input type="number" placeholder="So luong" name="Soluong" min="0" />
+            </div>
+            <div>
+                <label>Size</label>
+                <select class="selectpicker" multiple data-live-search="true" name="kich_thuoc">
+                    @foreach (var item in Model.kichthuoc)
+                    {
+                        <option value="@item.MaKT">@item.Size</option>
+                    }
+                </select>
+            </div>
+            <div>
+                <input type="text" name="Soluong" placeholder="Số lượng từng size"/>
+            </div>
+            <div>
+                <button type="submit" name="submit" class="glyphicon glyphicon-ok btn btn-primary"> THÊM</button>
+            </div>
+        }
+
+    </div>
+
+    <script>
+        $('select').selectpicker();
+    </script>
+</div>
+<hr/>
+@if (Model.mausac.Count() < 0)
+{
+    <p>Không có dữ liệu</p>
+}
+else
+{
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    MaMau
+                </th>
+                <th>
+                    TenMau
+                </th>
+                <th>
+                    SoLuong
+                </th>
+                <th>
+                    Kich thuoc
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.mausac)
+            {
+                <tr>
+                    <td>@item.MaMau</td>
+                    <td>@item.TenMau</td>
+                    <td>@item.SoLuong</td>
+                    <td>
+                        @foreach (var i in item.MaMau_MaKT)
+                        {
+                            <p class="row">
+                                @i.KichThuoc.Size
+                                @*|
+                                    @i.SoLuong*@
+                            </p>
+
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

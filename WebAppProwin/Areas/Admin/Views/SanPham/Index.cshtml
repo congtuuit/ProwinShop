@@ -1,0 +1,61 @@
+﻿@model IEnumerable<WebAppProwin.SanPham>
+
+@{
+    ViewBag.Title = "SẢN PHẨM";
+    ViewBag.ID = "Danh Sách";
+
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        @Html.ActionLink("THÊM SẢN PHẨM", "ThemSanPham")
+
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        MaSP
+                    </th>
+                    <th>
+                        MaTH
+                    </th>
+                    <th>
+                        TenSP
+                    </th>
+                    <th>
+                        Gia
+                    </th>
+                    <th>
+                        Ngay nhap
+                    </th>
+                    <th>
+                        Chi tiết
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.MaSP</td>
+                        <td>@item.MaTH</td>
+                        <td>@item.TenSP</td>
+                        <td>@item.GiaSP</td>
+                        <td>@item.NgayTao.Value.ToShortDateString()</td>
+                        <td>
+                            @Html.ActionLink("Xem", "ChiTietSP", new { id = item.MaSP })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

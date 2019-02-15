@@ -1,0 +1,98 @@
+﻿{
+  "Nodes": [
+    {
+      "Name": "Home",
+      "Icon": "home",
+      "url": "/Admin/Home",
+      "Child": []
+    },
+    {
+      "Name": "Quản lý sản phẩm",
+      "Icon": "widgets",
+      "url": "",
+      "Child": [
+        {
+          "Name": "Danh Sách",
+          "url": "/Admin/SanPham/Index"
+        },
+        {
+          "Name": "Thêm sản phẩm",
+          "url": "/Admin/SanPham/ThemSanPham"
+        },
+        {
+          "Name": "Thêm Loại",
+          "url": "/Admin/SanPham/ThemLoai"
+        },
+        {
+          "Name": "Thêm màu sắc",
+          "url": "/Admin/SanPham/ThemMauSac"
+        },
+        {
+          "Name": "Thêm kích thước",
+          "url": "/Admin/SanPham/ThemKichThuoc"
+        }
+      ]
+    },
+    {
+      "Name": "Quản lý bài viết",
+      "Icon": "widgets",
+      "url": "",
+      "Child": [
+        {
+          "Name": "Thêm bài viết",
+          "url": "/Admin/BaiViet/ThemBV"
+        },
+        {
+          "Name": "Thêm danh mục bài viết",
+          "url": "/Admin/BaiViet/ThemDanhMucBV"
+        },
+
+        {
+          "Name": "Thêm Tag",
+          "url": "/Admin/BaiViet/ThemTag"
+        },
+        {
+          "Name": "Danh sách bài viết",
+          "url": "/Admin/BaiViet/Index"
+        }
+      ]
+    },
+    {
+      "Name": "Quản lý khách hàng",
+      "Icon": "widgets",
+      "url": "",
+      "Child": [
+        {
+          "Name": "Tìm kiếm khách hàng",
+          "url": "/Admin/KhachHang/Index"
+        },
+        {
+          "Name": "Yêu cầu khách hàng",
+          "url": "/Admin/KhachHang/YeuCauKH"
+        }
+      ]
+    },
+    {
+      "Name": "Quản lý danh mục",
+      "Icon": "widgets",
+      "url": "",
+      "Child": [
+        {
+          "Name": "Thêm danh mục",
+          "url": "/Admin/DanhMuc/ThemDM"
+        },
+        {
+          "Name": "Tìm kiếm danh mục",
+          "url": "/Admin/DanhMuc/Index"
+        }
+      ]
+    },
+
+    {
+      "Name": "Quản lý trang",
+      "Icon": "widgets",
+      "url": "/Admin/QuanLyTrang/Index",
+      "Child": []
+    }
+  ]
+}

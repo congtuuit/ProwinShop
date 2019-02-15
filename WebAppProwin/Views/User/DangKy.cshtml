@@ -1,0 +1,71 @@
+﻿<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<div>
+    <form id="Form-DangKy" action="DangKy" method="post">
+        <h3>Thông tin cá nhân</h3>
+        <div class="row">
+            <label>Tên</label>
+            <input type="text" placeholder="Họ và Tên đệm" name="HoKH" />
+            <input type="text" placeholder="Tên" name="TenKH" />
+        </div>
+        <div class="row">
+            <label>Ngày sinh</label>
+            <input type="date" placeholder="Ngày sinh" name="NgaySinh" />
+        </div>
+        <div class="row">
+            <label>Giới tính</label>
+            <select name="GioiTinh">
+                <option value="True">Nam</option>
+                <option value="False">Nữ</option>
+            </select>
+        </div>
+        <div class="row">
+            <label>Địa chỉ</label>
+            <input type="text" placeholder="Địa chỉ" name="DiaChi" />
+        </div>
+        <div class="row">
+            <label>Điện thoại</label>
+            <input type="tel" placeholder="Điện thoại" name="DienThoai" />
+        </div>
+        <div class="row">
+            <label>Địa chỉ Email</label>
+            <input type="email" placeholder="Email" name="Email" />
+        </div>
+        <h3>Thông tin tài khoản</h3>
+        <div class="row">
+            <label>Tài khoản</label>
+            <input type="text" placeholder="Tên Tài Khoản" name="TenDN" onchange="KiemTra()"/>
+            <p class="text-danger" id="alert-text"></p>
+        </div>
+        <div class="row">
+            <label>Mật khẩu</label>
+            <input id="inputPassword" type="password" placeholder="Mật Khẩu" name="MatKhau1" />
+        </div>
+        <div class="row">
+            <label>Xác nhận mật khẩu</label>
+            <input id="inputPassAgain" type="password" placeholder="Nhập lại mật khẩu" name="MatKhau2" onchange="checkPassword()" />
+            <p class="text-danger" id="alert"></p>
+        </div>
+        <input type="submit" value="Đăng Ký" />
+    </form>
+    <a href="DangNhap">Login</a>
+</div>
+<script>
+    function KiemTra() {
+        $.post("KiemTra", { name: "John" }, function (data) {
+            $("#alert-text").html(data);
+            console.log(data)
+        });
+    }
+
+    function checkPassword() {
+        var pass1 = $("#inputPassword").val();
+        var pass2 = $("#inputPassAgain").val();
+        if (pass1 != pass2) {
+            $("#alert").html("Mật khẩu không trùng khớp!");
+        } else {
+            $("#alert").html("");
+        }
+    }
+</script>

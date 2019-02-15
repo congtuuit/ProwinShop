@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "TRANG CHỦ";
+    ViewBag.ID = "Home";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="mb-3">Trang chủ</h2>
+
+<div class="row clearfix">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="info-box bg-cyan hover-expand-effect">
+            <div class="icon">
+                <i class="material-icons">playlist_add_check</i>
+            </div>
+            <div class="content">
+                <div class="text text-white">Đơn hàng cần xử lý</div>
+                <div class="oountdh number count-to text-white">Chưa có đơn hàng</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="info-box bg-light-green hover-expand-effect">
+            <div class="icon">
+                <i class="material-icons">person_add</i>
+            </div>
+            <div class="content">
+                <div class="text text-white">Khách hàng gửi thông tin</div>
+                <div class="countkh number count-to text-white">Đang lấy dữ liệu</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<script>
+    $(document).ready(function () {
+        $.get("/Admin/Home/CountKH", function (data, status) {
+            if (status == "success") {
+                if (data == "0") {
+                    $(".countkh").html("Chưa có dữ liệu");
+                } else {
+                    $(".countkh").html(data);
+                }
+            }
+        });
+
+        var countDH = setInterval(function () {
+
+
+        }, 1000 * 60 * 5);
+        var countKH = setInterval(function () {
+            $.get("/Admin/Home/CountKH", function (data, status) {
+                if (status == "success") {
+                    if (data == "0") {
+                        $(".countkh").html("Chưa có dữ liệu");
+                    } else {
+                        $(".countkh").html(data);
+                    }
+                }
+            });
+
+        }, 1000 * 60);
+    });
+
+</script>*@
+
