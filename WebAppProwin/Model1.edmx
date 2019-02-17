@@ -10,10 +10,26 @@
             <PropertyRef Name="MaAlbum" />
           </Key>
           <Property Name="MaAlbum" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NguoiUpload" Type="int" />
+          <Property Name="NguoiUpload" Type="nvarchar" MaxLength="50" />
           <Property Name="NgayTao" Type="date" Nullable="false" />
           <Property Name="TrangThai" Type="int" Nullable="false" />
           <Property Name="TenAlbum" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="BaiViet">
+          <Key>
+            <PropertyRef Name="MaBV" />
+          </Key>
+          <Property Name="MaBV" Type="int" Nullable="false" />
+          <Property Name="MaAlbum" Type="int" Nullable="false" />
+          <Property Name="MaNV" Type="int" Nullable="false" />
+          <Property Name="MaDMC" Type="int" Nullable="false" />
+          <Property Name="TenBV" Type="nvarchar" MaxLength="70" Nullable="false" />
+          <Property Name="NgayDang" Type="datetime" Nullable="false" />
+          <Property Name="MoTa" Type="nvarchar" MaxLength="300" />
+          <Property Name="NoiDung" Type="ntext" Nullable="false" />
+          <Property Name="LinkFB" Type="nvarchar" MaxLength="1000" />
+          <Property Name="TrangThai" Type="int" Nullable="false" />
+          <Property Name="URL" Type="ntext" />
         </EntityType>
         <EntityType Name="CtDonHang">
           <Key>
@@ -27,6 +43,14 @@
           <Property Name="SoLuong" Type="int" Nullable="false" />
           <Property Name="GiaMua" Type="float" Nullable="false" />
           <Property Name="Sale" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ctTag">
+          <Key>
+            <PropertyRef Name="MaBV" />
+            <PropertyRef Name="MaTag" />
+          </Key>
+          <Property Name="MaBV" Type="int" Nullable="false" />
+          <Property Name="MaTag" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="DanhMuc">
           <Key>
@@ -163,6 +187,7 @@
           <Property Name="NoiDung" Type="ntext" />
           <Property Name="LuotTruyCap" Type="int" Nullable="false" />
           <Property Name="TrangThai" Type="int" Nullable="false" />
+          <Property Name="URL" Type="ntext" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -173,6 +198,13 @@
           <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="MaTag" />
+          </Key>
+          <Property Name="MaTag" Type="int" Nullable="false" />
+          <Property Name="TenTag" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="ThongSo">
           <Key>
@@ -195,6 +227,30 @@
           <Property Name="MaTH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TenThuongHieu" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <Association Name="FK_BaiViet_Album">
+          <End Role="Album" Type="Self.Album" Multiplicity="1" />
+          <End Role="BaiViet" Type="Self.BaiViet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Album">
+              <PropertyRef Name="MaAlbum" />
+            </Principal>
+            <Dependent Role="BaiViet">
+              <PropertyRef Name="MaAlbum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BaiViet_DanhMucCon">
+          <End Role="DanhMucCon" Type="Self.DanhMucCon" Multiplicity="1" />
+          <End Role="BaiViet" Type="Self.BaiViet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DanhMucCon">
+              <PropertyRef Name="MaDMC" />
+            </Principal>
+            <Dependent Role="BaiViet">
+              <PropertyRef Name="MaDMC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_CtDonHang_DonHang">
           <End Role="DonHang" Type="Self.DonHang" Multiplicity="1" />
           <End Role="CtDonHang" Type="Self.CtDonHang" Multiplicity="*" />
@@ -216,6 +272,30 @@
             </Principal>
             <Dependent Role="CtDonHang">
               <PropertyRef Name="MaSP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ctTag_BaiViet">
+          <End Role="BaiViet" Type="Self.BaiViet" Multiplicity="1" />
+          <End Role="ctTag" Type="Self.ctTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BaiViet">
+              <PropertyRef Name="MaBV" />
+            </Principal>
+            <Dependent Role="ctTag">
+              <PropertyRef Name="MaBV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ctTag_Tag">
+          <End Role="Tag" Type="Self.Tag" Multiplicity="1" />
+          <End Role="ctTag" Type="Self.ctTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tag">
+              <PropertyRef Name="MaTag" />
+            </Principal>
+            <Dependent Role="ctTag">
+              <PropertyRef Name="MaTag" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -365,7 +445,9 @@
         </Association>
         <EntityContainer Name="ProwinShopModelStoreContainer">
           <EntitySet Name="Album" EntityType="Self.Album" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BaiViet" EntityType="Self.BaiViet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CtDonHang" EntityType="Self.CtDonHang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ctTag" EntityType="Self.ctTag" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DanhMuc" EntityType="Self.DanhMuc" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DanhMucCon" EntityType="Self.DanhMucCon" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DonHang" EntityType="Self.DonHang" Schema="dbo" store:Type="Tables" />
@@ -379,8 +461,17 @@
           <EntitySet Name="NhanVien" EntityType="Self.NhanVien" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SanPham" EntityType="Self.SanPham" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tag" EntityType="Self.Tag" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ThongSo" EntityType="Self.ThongSo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ThuongHieu" EntityType="Self.ThuongHieu" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_BaiViet_Album" Association="Self.FK_BaiViet_Album">
+            <End Role="Album" EntitySet="Album" />
+            <End Role="BaiViet" EntitySet="BaiViet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BaiViet_DanhMucCon" Association="Self.FK_BaiViet_DanhMucCon">
+            <End Role="DanhMucCon" EntitySet="DanhMucCon" />
+            <End Role="BaiViet" EntitySet="BaiViet" />
+          </AssociationSet>
           <AssociationSet Name="FK_CtDonHang_DonHang" Association="Self.FK_CtDonHang_DonHang">
             <End Role="DonHang" EntitySet="DonHang" />
             <End Role="CtDonHang" EntitySet="CtDonHang" />
@@ -388,6 +479,14 @@
           <AssociationSet Name="FK_CtDonHang_SanPham" Association="Self.FK_CtDonHang_SanPham">
             <End Role="SanPham" EntitySet="SanPham" />
             <End Role="CtDonHang" EntitySet="CtDonHang" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ctTag_BaiViet" Association="Self.FK_ctTag_BaiViet">
+            <End Role="BaiViet" EntitySet="BaiViet" />
+            <End Role="ctTag" EntitySet="ctTag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ctTag_Tag" Association="Self.FK_ctTag_Tag">
+            <End Role="Tag" EntitySet="Tag" />
+            <End Role="ctTag" EntitySet="ctTag" />
           </AssociationSet>
           <AssociationSet Name="FK_DanhMucCon_DanhMuc" Association="Self.FK_DanhMucCon_DanhMuc">
             <End Role="DanhMuc" EntitySet="DanhMuc" />
@@ -448,12 +547,32 @@
             <PropertyRef Name="MaAlbum" />
           </Key>
           <Property Name="MaAlbum" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NguoiUpload" Type="Int32" />
+          <Property Name="NguoiUpload" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="NgayTao" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="TrangThai" Type="Int32" Nullable="false" />
           <Property Name="TenAlbum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BaiViets" Relationship="Self.FK_BaiViet_Album" FromRole="Album" ToRole="BaiViet" />
           <NavigationProperty Name="HinhAnhs" Relationship="Self.FK_HinhAnh_Album" FromRole="Album" ToRole="HinhAnh" />
           <NavigationProperty Name="SanPhams" Relationship="Self.FK_SanPham_Album" FromRole="Album" ToRole="SanPham" />
+        </EntityType>
+        <EntityType Name="BaiViet">
+          <Key>
+            <PropertyRef Name="MaBV" />
+          </Key>
+          <Property Name="MaBV" Type="Int32" Nullable="false" />
+          <Property Name="MaAlbum" Type="Int32" Nullable="false" />
+          <Property Name="MaNV" Type="Int32" Nullable="false" />
+          <Property Name="MaDMC" Type="Int32" Nullable="false" />
+          <Property Name="TenBV" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NgayDang" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MoTa" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LinkFB" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="TrangThai" Type="Int32" Nullable="false" />
+          <Property Name="URL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Album" Relationship="Self.FK_BaiViet_Album" FromRole="BaiViet" ToRole="Album" />
+          <NavigationProperty Name="DanhMucCon" Relationship="Self.FK_BaiViet_DanhMucCon" FromRole="BaiViet" ToRole="DanhMucCon" />
+          <NavigationProperty Name="Tags" Relationship="Self.ctTag" FromRole="BaiViet" ToRole="Tag" />
         </EntityType>
         <EntityType Name="CtDonHang">
           <Key>
@@ -490,6 +609,7 @@
           <Property Name="TenDMUN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Mota" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="TrangThai" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BaiViets" Relationship="Self.FK_BaiViet_DanhMucCon" FromRole="DanhMucCon" ToRole="BaiViet" />
           <NavigationProperty Name="DanhMuc" Relationship="Self.FK_DanhMucCon_DanhMuc" FromRole="DanhMucCon" ToRole="DanhMuc" />
           <NavigationProperty Name="SanPhams" Relationship="Self.FK_SanPham_DanhMucCon" FromRole="DanhMucCon" ToRole="SanPham" />
         </EntityType>
@@ -623,6 +743,7 @@
           <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="LuotTruyCap" Type="Int32" Nullable="false" />
           <Property Name="TrangThai" Type="Int32" Nullable="false" />
+          <Property Name="URL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Album" Relationship="Self.FK_SanPham_Album" FromRole="SanPham" ToRole="Album" />
           <NavigationProperty Name="CtDonHangs" Relationship="Self.FK_CtDonHang_SanPham" FromRole="SanPham" ToRole="CtDonHang" />
           <NavigationProperty Name="DanhMucCon" Relationship="Self.FK_SanPham_DanhMucCon" FromRole="SanPham" ToRole="DanhMucCon" />
@@ -638,6 +759,14 @@
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="MaTag" />
+          </Key>
+          <Property Name="MaTag" Type="Int32" Nullable="false" />
+          <Property Name="TenTag" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BaiViets" Relationship="Self.ctTag" FromRole="Tag" ToRole="BaiViet" />
         </EntityType>
         <EntityType Name="ThongSo">
           <Key>
@@ -661,6 +790,18 @@
           <Property Name="TenThuongHieu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="SanPhams" Relationship="Self.FK_SanPham_ThuongHieu" FromRole="ThuongHieu" ToRole="SanPham" />
         </EntityType>
+        <Association Name="FK_BaiViet_Album">
+          <End Role="Album" Type="Self.Album" Multiplicity="1" />
+          <End Role="BaiViet" Type="Self.BaiViet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Album">
+              <PropertyRef Name="MaAlbum" />
+            </Principal>
+            <Dependent Role="BaiViet">
+              <PropertyRef Name="MaAlbum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_HinhAnh_Album">
           <End Role="Album" Type="Self.Album" Multiplicity="0..1" />
           <End Role="HinhAnh" Type="Self.HinhAnh" Multiplicity="*" />
@@ -682,6 +823,18 @@
             </Principal>
             <Dependent Role="SanPham">
               <PropertyRef Name="MaAlbum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BaiViet_DanhMucCon">
+          <End Role="DanhMucCon" Type="Self.DanhMucCon" Multiplicity="1" />
+          <End Role="BaiViet" Type="Self.BaiViet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DanhMucCon">
+              <PropertyRef Name="MaDMC" />
+            </Principal>
+            <Dependent Role="BaiViet">
+              <PropertyRef Name="MaDMC" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -829,8 +982,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="ctTag">
+          <End Role="BaiViet" Type="Self.BaiViet" Multiplicity="*" />
+          <End Role="Tag" Type="Self.Tag" Multiplicity="*" />
+        </Association>
         <EntityContainer Name="ProwinShopEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Albums" EntityType="Self.Album" />
+          <EntitySet Name="BaiViets" EntityType="Self.BaiViet" />
           <EntitySet Name="CtDonHangs" EntityType="Self.CtDonHang" />
           <EntitySet Name="DanhMucs" EntityType="Self.DanhMuc" />
           <EntitySet Name="DanhMucCons" EntityType="Self.DanhMucCon" />
@@ -845,8 +1003,13 @@
           <EntitySet Name="NhanViens" EntityType="Self.NhanVien" />
           <EntitySet Name="SanPhams" EntityType="Self.SanPham" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Tags" EntityType="Self.Tag" />
           <EntitySet Name="ThongSoes" EntityType="Self.ThongSo" />
           <EntitySet Name="ThuongHieux" EntityType="Self.ThuongHieu" />
+          <AssociationSet Name="FK_BaiViet_Album" Association="Self.FK_BaiViet_Album">
+            <End Role="Album" EntitySet="Albums" />
+            <End Role="BaiViet" EntitySet="BaiViets" />
+          </AssociationSet>
           <AssociationSet Name="FK_HinhAnh_Album" Association="Self.FK_HinhAnh_Album">
             <End Role="Album" EntitySet="Albums" />
             <End Role="HinhAnh" EntitySet="HinhAnhs" />
@@ -854,6 +1017,10 @@
           <AssociationSet Name="FK_SanPham_Album" Association="Self.FK_SanPham_Album">
             <End Role="Album" EntitySet="Albums" />
             <End Role="SanPham" EntitySet="SanPhams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BaiViet_DanhMucCon" Association="Self.FK_BaiViet_DanhMucCon">
+            <End Role="DanhMucCon" EntitySet="DanhMucCons" />
+            <End Role="BaiViet" EntitySet="BaiViets" />
           </AssociationSet>
           <AssociationSet Name="FK_CtDonHang_DonHang" Association="Self.FK_CtDonHang_DonHang">
             <End Role="DonHang" EntitySet="DonHangs" />
@@ -903,6 +1070,10 @@
             <End Role="ThuongHieu" EntitySet="ThuongHieux" />
             <End Role="SanPham" EntitySet="SanPhams" />
           </AssociationSet>
+          <AssociationSet Name="ctTag" Association="Self.ctTag">
+            <End Role="BaiViet" EntitySet="BaiViets" />
+            <End Role="Tag" EntitySet="Tags" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -918,6 +1089,23 @@
                 <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
                 <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
                 <ScalarProperty Name="TenAlbum" ColumnName="TenAlbum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BaiViets">
+            <EntityTypeMapping TypeName="ProwinShopModel.BaiViet">
+              <MappingFragment StoreEntitySet="BaiViet">
+                <ScalarProperty Name="MaBV" ColumnName="MaBV" />
+                <ScalarProperty Name="MaAlbum" ColumnName="MaAlbum" />
+                <ScalarProperty Name="MaNV" ColumnName="MaNV" />
+                <ScalarProperty Name="MaDMC" ColumnName="MaDMC" />
+                <ScalarProperty Name="TenBV" ColumnName="TenBV" />
+                <ScalarProperty Name="NgayDang" ColumnName="NgayDang" />
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+                <ScalarProperty Name="LinkFB" ColumnName="LinkFB" />
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1078,6 +1266,7 @@
                 <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
                 <ScalarProperty Name="LuotTruyCap" ColumnName="LuotTruyCap" />
                 <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1089,6 +1278,14 @@
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tags">
+            <EntityTypeMapping TypeName="ProwinShopModel.Tag">
+              <MappingFragment StoreEntitySet="Tag">
+                <ScalarProperty Name="MaTag" ColumnName="MaTag" />
+                <ScalarProperty Name="TenTag" ColumnName="TenTag" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1115,6 +1312,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="ctTag" TypeName="ProwinShopModel.ctTag" StoreEntitySet="ctTag">
+            <EndProperty Name="BaiViet">
+              <ScalarProperty Name="MaBV" ColumnName="MaBV" />
+            </EndProperty>
+            <EndProperty Name="Tag">
+              <ScalarProperty Name="MaTag" ColumnName="MaTag" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

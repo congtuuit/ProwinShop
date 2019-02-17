@@ -110,7 +110,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Admin\animate.min.css" />
+    <Content Include="Content\Admin\jquery.fileupload-noscript.css" />
+    <Content Include="Content\Admin\jquery.fileupload-ui-noscript.css" />
+    <Content Include="Content\Admin\jquery.fileupload-ui.css" />
+    <Content Include="Content\Admin\jquery.fileupload.css" />
     <Content Include="Content\Admin\materialize.css" />
+    <Content Include="Content\Admin\style.css" />
     <Content Include="Content\Admin\style.min.css" />
     <Content Include="Content\Admin\waves.min.css" />
     <Content Include="Content\ImageDialog\imagedialog.css" />
@@ -130,7 +135,19 @@
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\Admin\admin.js" />
+    <Content Include="Scripts\Admin\jquery.fileupload-angular.js" />
+    <Content Include="Scripts\Admin\jquery.fileupload-audio.js" />
+    <Content Include="Scripts\Admin\jquery.fileupload-image.js" />
+    <Content Include="Scripts\Admin\jquery.fileupload-jquery-ui.js" />
+    <Content Include="Scripts\Admin\jquery.fileupload-process.js" />
+    <Content Include="Scripts\Admin\jquery.fileupload-ui.js" />
+    <Content Include="Scripts\Admin\jquery.fileupload-validate.js" />
+    <Content Include="Scripts\Admin\jquery.fileupload-video.js" />
+    <Content Include="Scripts\Admin\jquery.fileupload.js" />
+    <Content Include="Scripts\Admin\jquery.iframe-transport.js" />
+    <Content Include="Scripts\Admin\jquery.ui.widget.js" />
     <Content Include="Scripts\Admin\jscolor.min.js" />
+    <Content Include="Scripts\Admin\main.js" />
     <Content Include="Scripts\Admin\waves.min.js" />
     <Content Include="Scripts\ImageDialog\ImageDialog.js" />
     <Content Include="Scripts\ImageDialog\jstree.min.js" />
@@ -157,12 +174,18 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\HinhAnhController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\SanPhamController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UploadFileController.cs" />
+    <Compile Include="Areas\Admin\Models\AlbumModel.cs" />
     <Compile Include="Areas\Admin\Models\MauModel.cs" />
     <Compile Include="Areas\Admin\Models\SanPhamModel.cs" />
     <Compile Include="Areas\Admin\Models\ViewChiTiet.cs" />
     <Compile Include="Areas\Admin\Models\ViewSanPham.cs" />
+    <Compile Include="BaiViet.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\TrangChuController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="CtDonHang.cs">
@@ -230,6 +253,9 @@
     <Compile Include="sysdiagram.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Tag.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="ThongSo.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -246,6 +272,7 @@
     <Content Include="Areas\Admin\Views\SanPham\Index.cshtml" />
     <Content Include="Areas\Admin\Views\SanPham\ThemSanPham.cshtml" />
     <Content Include="Areas\Admin\Views\SanPham\ChiTietSP.cshtml" />
+    <Content Include="Areas\Admin\Views\HinhAnh\Index.cshtml" />
     <EntityDeploy Include="Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -253,6 +280,8 @@
     <Content Include="Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Views\HinhAnh\GetListIMG.cshtml" />
+    <Content Include="Areas\Admin\Views\UploadFile\Index.cshtml" />
     <None Include="packages.config" />
     <Content Include="Scripts\Views\BaoMat\Index.cshtml" />
     <Content Include="Scripts\Views\DangNhap\Index.cshtml" />
@@ -283,6 +312,8 @@
     <Folder Include="Font\" />
     <Folder Include="Images\" />
     <Folder Include="Scripts\Views\DangKy\" />
+    <Folder Include="Upload\Album01\" />
+    <Folder Include="Upload\Album02\" />
     <Folder Include="Views\TrangChu\" />
   </ItemGroup>
   <ItemGroup>

@@ -34,6 +34,7 @@ namespace WebAppProwin
         public string NoiDung { get; set; }
         public int LuotTruyCap { get; set; }
         public int TrangThai { get; set; }
+        public string URL { get; set; }
     
         public virtual Album Album { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -5,12 +5,32 @@
       <PropertyRef Name="MaAlbum" />
     </Key>
     <Property Name="MaAlbum" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="NguoiUpload" Type="Int32" />
+    <Property Name="NguoiUpload" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="NgayTao" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="TrangThai" Type="Int32" Nullable="false" />
     <Property Name="TenAlbum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="BaiViets" Relationship="Self.FK_BaiViet_Album" FromRole="Album" ToRole="BaiViet" />
     <NavigationProperty Name="HinhAnhs" Relationship="Self.FK_HinhAnh_Album" FromRole="Album" ToRole="HinhAnh" />
     <NavigationProperty Name="SanPhams" Relationship="Self.FK_SanPham_Album" FromRole="Album" ToRole="SanPham" />
+  </EntityType>
+  <EntityType Name="BaiViet">
+    <Key>
+      <PropertyRef Name="MaBV" />
+    </Key>
+    <Property Name="MaBV" Type="Int32" Nullable="false" />
+    <Property Name="MaAlbum" Type="Int32" Nullable="false" />
+    <Property Name="MaNV" Type="Int32" Nullable="false" />
+    <Property Name="MaDMC" Type="Int32" Nullable="false" />
+    <Property Name="TenBV" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NgayDang" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MoTa" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LinkFB" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="TrangThai" Type="Int32" Nullable="false" />
+    <Property Name="URL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Album" Relationship="Self.FK_BaiViet_Album" FromRole="BaiViet" ToRole="Album" />
+    <NavigationProperty Name="DanhMucCon" Relationship="Self.FK_BaiViet_DanhMucCon" FromRole="BaiViet" ToRole="DanhMucCon" />
+    <NavigationProperty Name="Tags" Relationship="Self.ctTag" FromRole="BaiViet" ToRole="Tag" />
   </EntityType>
   <EntityType Name="CtDonHang">
     <Key>
@@ -47,6 +67,7 @@
     <Property Name="TenDMUN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Mota" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="TrangThai" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="BaiViets" Relationship="Self.FK_BaiViet_DanhMucCon" FromRole="DanhMucCon" ToRole="BaiViet" />
     <NavigationProperty Name="DanhMuc" Relationship="Self.FK_DanhMucCon_DanhMuc" FromRole="DanhMucCon" ToRole="DanhMuc" />
     <NavigationProperty Name="SanPhams" Relationship="Self.FK_SanPham_DanhMucCon" FromRole="DanhMucCon" ToRole="SanPham" />
   </EntityType>
@@ -180,6 +201,7 @@
     <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="LuotTruyCap" Type="Int32" Nullable="false" />
     <Property Name="TrangThai" Type="Int32" Nullable="false" />
+    <Property Name="URL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Album" Relationship="Self.FK_SanPham_Album" FromRole="SanPham" ToRole="Album" />
     <NavigationProperty Name="CtDonHangs" Relationship="Self.FK_CtDonHang_SanPham" FromRole="SanPham" ToRole="CtDonHang" />
     <NavigationProperty Name="DanhMucCon" Relationship="Self.FK_SanPham_DanhMucCon" FromRole="SanPham" ToRole="DanhMucCon" />
@@ -195,6 +217,14 @@
     <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="version" Type="Int32" />
     <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Tag">
+    <Key>
+      <PropertyRef Name="MaTag" />
+    </Key>
+    <Property Name="MaTag" Type="Int32" Nullable="false" />
+    <Property Name="TenTag" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="BaiViets" Relationship="Self.ctTag" FromRole="Tag" ToRole="BaiViet" />
   </EntityType>
   <EntityType Name="ThongSo">
     <Key>
@@ -218,6 +248,18 @@
     <Property Name="TenThuongHieu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="SanPhams" Relationship="Self.FK_SanPham_ThuongHieu" FromRole="ThuongHieu" ToRole="SanPham" />
   </EntityType>
+  <Association Name="FK_BaiViet_Album">
+    <End Role="Album" Type="Self.Album" Multiplicity="1" />
+    <End Role="BaiViet" Type="Self.BaiViet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Album">
+        <PropertyRef Name="MaAlbum" />
+      </Principal>
+      <Dependent Role="BaiViet">
+        <PropertyRef Name="MaAlbum" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_HinhAnh_Album">
     <End Role="Album" Type="Self.Album" Multiplicity="0..1" />
     <End Role="HinhAnh" Type="Self.HinhAnh" Multiplicity="*" />
@@ -239,6 +281,18 @@
       </Principal>
       <Dependent Role="SanPham">
         <PropertyRef Name="MaAlbum" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BaiViet_DanhMucCon">
+    <End Role="DanhMucCon" Type="Self.DanhMucCon" Multiplicity="1" />
+    <End Role="BaiViet" Type="Self.BaiViet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DanhMucCon">
+        <PropertyRef Name="MaDMC" />
+      </Principal>
+      <Dependent Role="BaiViet">
+        <PropertyRef Name="MaDMC" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -386,8 +440,13 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="ctTag">
+    <End Role="BaiViet" Type="Self.BaiViet" Multiplicity="*" />
+    <End Role="Tag" Type="Self.Tag" Multiplicity="*" />
+  </Association>
   <EntityContainer Name="ProwinShopEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Albums" EntityType="Self.Album" />
+    <EntitySet Name="BaiViets" EntityType="Self.BaiViet" />
     <EntitySet Name="CtDonHangs" EntityType="Self.CtDonHang" />
     <EntitySet Name="DanhMucs" EntityType="Self.DanhMuc" />
     <EntitySet Name="DanhMucCons" EntityType="Self.DanhMucCon" />
@@ -402,8 +461,13 @@
     <EntitySet Name="NhanViens" EntityType="Self.NhanVien" />
     <EntitySet Name="SanPhams" EntityType="Self.SanPham" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Tags" EntityType="Self.Tag" />
     <EntitySet Name="ThongSoes" EntityType="Self.ThongSo" />
     <EntitySet Name="ThuongHieux" EntityType="Self.ThuongHieu" />
+    <AssociationSet Name="FK_BaiViet_Album" Association="Self.FK_BaiViet_Album">
+      <End Role="Album" EntitySet="Albums" />
+      <End Role="BaiViet" EntitySet="BaiViets" />
+    </AssociationSet>
     <AssociationSet Name="FK_HinhAnh_Album" Association="Self.FK_HinhAnh_Album">
       <End Role="Album" EntitySet="Albums" />
       <End Role="HinhAnh" EntitySet="HinhAnhs" />
@@ -411,6 +475,10 @@
     <AssociationSet Name="FK_SanPham_Album" Association="Self.FK_SanPham_Album">
       <End Role="Album" EntitySet="Albums" />
       <End Role="SanPham" EntitySet="SanPhams" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BaiViet_DanhMucCon" Association="Self.FK_BaiViet_DanhMucCon">
+      <End Role="DanhMucCon" EntitySet="DanhMucCons" />
+      <End Role="BaiViet" EntitySet="BaiViets" />
     </AssociationSet>
     <AssociationSet Name="FK_CtDonHang_DonHang" Association="Self.FK_CtDonHang_DonHang">
       <End Role="DonHang" EntitySet="DonHangs" />
@@ -459,6 +527,10 @@
     <AssociationSet Name="FK_SanPham_ThuongHieu" Association="Self.FK_SanPham_ThuongHieu">
       <End Role="ThuongHieu" EntitySet="ThuongHieux" />
       <End Role="SanPham" EntitySet="SanPhams" />
+    </AssociationSet>
+    <AssociationSet Name="ctTag" Association="Self.ctTag">
+      <End Role="BaiViet" EntitySet="BaiViets" />
+      <End Role="Tag" EntitySet="Tags" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

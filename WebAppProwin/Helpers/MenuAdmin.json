@@ -12,7 +12,7 @@
       "url": "",
       "Child": [
         {
-          "Name": "Danh Sách",
+          "Name": "Kho Sản Phẩm",
           "url": "/Admin/SanPham/Index"
         },
         {
@@ -20,40 +20,8 @@
           "url": "/Admin/SanPham/ThemSanPham"
         },
         {
-          "Name": "Thêm Loại",
-          "url": "/Admin/SanPham/ThemLoai"
-        },
-        {
-          "Name": "Thêm màu sắc",
-          "url": "/Admin/SanPham/ThemMauSac"
-        },
-        {
           "Name": "Thêm kích thước",
           "url": "/Admin/SanPham/ThemKichThuoc"
-        }
-      ]
-    },
-    {
-      "Name": "Quản lý bài viết",
-      "Icon": "widgets",
-      "url": "",
-      "Child": [
-        {
-          "Name": "Thêm bài viết",
-          "url": "/Admin/BaiViet/ThemBV"
-        },
-        {
-          "Name": "Thêm danh mục bài viết",
-          "url": "/Admin/BaiViet/ThemDanhMucBV"
-        },
-
-        {
-          "Name": "Thêm Tag",
-          "url": "/Admin/BaiViet/ThemTag"
-        },
-        {
-          "Name": "Danh sách bài viết",
-          "url": "/Admin/BaiViet/Index"
         }
       ]
     },
@@ -89,10 +57,19 @@
     },
 
     {
-      "Name": "Quản lý trang",
+      "Name": "Tải Lên",
       "Icon": "widgets",
-      "url": "/Admin/QuanLyTrang/Index",
-      "Child": []
+      "url": "",
+      "Child": [
+        {
+          "Name": "Hình Ảnh",
+          "url": "/Admin/HinhAnh/Index"
+        },
+        {
+          "Name": "Bài Viết",
+          "url": "/Admin/BaiViet/Index"
+        }
+      ]
     }
   ]
 }

@@ -12,26 +12,29 @@ namespace WebAppProwin
     using System;
     using System.Collections.Generic;
     
-    public partial class DanhMucCon
+    public partial class BaiViet
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public DanhMucCon()
+        public BaiViet()
         {
-            this.BaiViets = new HashSet<BaiViet>();
-            this.SanPhams = new HashSet<SanPham>();
+            this.Tags = new HashSet<Tag>();
         }
     
+        public int MaBV { get; set; }
+        public int MaAlbum { get; set; }
+        public int MaNV { get; set; }
         public int MaDMC { get; set; }
-        public int MaDM { get; set; }
-        public string TenDM { get; set; }
-        public string TenDMUN { get; set; }
-        public string Mota { get; set; }
+        public string TenBV { get; set; }
+        public System.DateTime NgayDang { get; set; }
+        public string MoTa { get; set; }
+        public string NoiDung { get; set; }
+        public string LinkFB { get; set; }
         public int TrangThai { get; set; }
+        public string URL { get; set; }
     
+        public virtual Album Album { get; set; }
+        public virtual DanhMucCon DanhMucCon { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BaiViet> BaiViets { get; set; }
-        public virtual DanhMuc DanhMuc { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SanPham> SanPhams { get; set; }
+        public virtual ICollection<Tag> Tags { get; set; }
     }
 }

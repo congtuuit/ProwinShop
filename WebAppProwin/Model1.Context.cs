@@ -26,6 +26,7 @@ namespace WebAppProwin
         }
     
         public virtual DbSet<Album> Albums { get; set; }
+        public virtual DbSet<BaiViet> BaiViets { get; set; }
         public virtual DbSet<CtDonHang> CtDonHangs { get; set; }
         public virtual DbSet<DanhMuc> DanhMucs { get; set; }
         public virtual DbSet<DanhMucCon> DanhMucCons { get; set; }
@@ -40,6 +41,7 @@ namespace WebAppProwin
         public virtual DbSet<NhanVien> NhanViens { get; set; }
         public virtual DbSet<SanPham> SanPhams { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<Tag> Tags { get; set; }
         public virtual DbSet<ThongSo> ThongSoes { get; set; }
         public virtual DbSet<ThuongHieu> ThuongHieux { get; set; }
     }
