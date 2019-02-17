@@ -4,26 +4,30 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="362853ec59cd4e118632febd22494b0b" Name="Diagram1">
-        <EntityTypeShape EntityType="ProwinShopModel.Album" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProwinShopModel.CtDonHang" Width="1.5" PointX="11.25" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProwinShopModel.DanhMuc" Width="1.5" PointX="1.5" PointY="9.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProwinShopModel.DanhMucCon" Width="1.5" PointX="3.75" PointY="9.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProwinShopModel.DonHang" Width="1.5" PointX="9" PointY="8.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProwinShopModel.HinhAnh" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProwinShopModel.KhachHang" Width="1.5" PointX="6.75" PointY="8.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProwinShopModel.KichThuoc" Width="1.5" PointX="11.25" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProwinShopModel.LoaiAnh" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProwinShopModel.LoaiMau" Width="1.5" PointX="6" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProwinShopModel.MaMau_MaKT" Width="1.5" PointX="13.5" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProwinShopModel.MauSac" Width="1.5" PointX="8.25" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProwinShopModel.NhanVien" Width="1.5" PointX="11.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProwinShopModel.SanPham" Width="1.5" PointX="6" PointY="3.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProwinShopModel.sysdiagram" Width="1.5" PointX="11.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProwinShopModel.ThongSo" Width="1.5" PointX="0.75" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProwinShopModel.ThuongHieu" Width="1.5" PointX="3.75" PointY="1.375" IsExpanded="true" />
+      <Diagram DiagramId="cb19344f49844b0eb3469e995d8e7230" Name="Diagram1">
+        <EntityTypeShape EntityType="ProwinShopModel.Album" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProwinShopModel.BaiViet" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProwinShopModel.CtDonHang" Width="1.5" PointX="5.25" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProwinShopModel.DanhMuc" Width="1.5" PointX="1.5" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProwinShopModel.DanhMucCon" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProwinShopModel.DonHang" Width="1.5" PointX="3" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProwinShopModel.HinhAnh" Width="1.5" PointX="6" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProwinShopModel.KhachHang" Width="1.5" PointX="0.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProwinShopModel.KichThuoc" Width="1.5" PointX="8.25" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProwinShopModel.LoaiAnh" Width="1.5" PointX="3.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProwinShopModel.LoaiMau" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProwinShopModel.MaMau_MaKT" Width="1.5" PointX="10.5" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProwinShopModel.MauSac" Width="1.5" PointX="8.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProwinShopModel.NhanVien" Width="1.5" PointX="8.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProwinShopModel.SanPham" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProwinShopModel.sysdiagram" Width="1.5" PointX="10.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProwinShopModel.Tag" Width="1.5" PointX="5.25" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProwinShopModel.ThongSo" Width="1.5" PointX="10.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProwinShopModel.ThuongHieu" Width="1.5" PointX="0.75" PointY="15.625" IsExpanded="true" />
+        <AssociationConnector Association="ProwinShopModel.FK_BaiViet_Album" ManuallyRouted="false" />
         <AssociationConnector Association="ProwinShopModel.FK_HinhAnh_Album" ManuallyRouted="false" />
         <AssociationConnector Association="ProwinShopModel.FK_SanPham_Album" ManuallyRouted="false" />
+        <AssociationConnector Association="ProwinShopModel.FK_BaiViet_DanhMucCon" ManuallyRouted="false" />
         <AssociationConnector Association="ProwinShopModel.FK_CtDonHang_DonHang" ManuallyRouted="false" />
         <AssociationConnector Association="ProwinShopModel.FK_CtDonHang_SanPham" ManuallyRouted="false" />
         <AssociationConnector Association="ProwinShopModel.FK_DanhMucCon_DanhMuc" ManuallyRouted="false" />
@@ -36,6 +40,7 @@
         <AssociationConnector Association="ProwinShopModel.FK_MaMau_MaKT_MauSac" ManuallyRouted="false" />
         <AssociationConnector Association="ProwinShopModel.FK_MauSac_SanPham" ManuallyRouted="false" />
         <AssociationConnector Association="ProwinShopModel.FK_SanPham_ThuongHieu" ManuallyRouted="false" />
+        <AssociationConnector Association="ProwinShopModel.ctTag" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

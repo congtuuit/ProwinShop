@@ -12,26 +12,18 @@ namespace WebAppProwin
     using System;
     using System.Collections.Generic;
     
-    public partial class DanhMucCon
+    public partial class Tag
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public DanhMucCon()
+        public Tag()
         {
             this.BaiViets = new HashSet<BaiViet>();
-            this.SanPhams = new HashSet<SanPham>();
         }
     
-        public int MaDMC { get; set; }
-        public int MaDM { get; set; }
-        public string TenDM { get; set; }
-        public string TenDMUN { get; set; }
-        public string Mota { get; set; }
-        public int TrangThai { get; set; }
+        public int MaTag { get; set; }
+        public string TenTag { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BaiViet> BaiViets { get; set; }
-        public virtual DanhMuc DanhMuc { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SanPham> SanPhams { get; set; }
     }
 }

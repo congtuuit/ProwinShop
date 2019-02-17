@@ -12,6 +12,23 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="BaiViets">
+      <EntityTypeMapping TypeName="ProwinShopModel.BaiViet">
+        <MappingFragment StoreEntitySet="BaiViet">
+          <ScalarProperty Name="MaBV" ColumnName="MaBV" />
+          <ScalarProperty Name="MaAlbum" ColumnName="MaAlbum" />
+          <ScalarProperty Name="MaNV" ColumnName="MaNV" />
+          <ScalarProperty Name="MaDMC" ColumnName="MaDMC" />
+          <ScalarProperty Name="TenBV" ColumnName="TenBV" />
+          <ScalarProperty Name="NgayDang" ColumnName="NgayDang" />
+          <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+          <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+          <ScalarProperty Name="LinkFB" ColumnName="LinkFB" />
+          <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+          <ScalarProperty Name="URL" ColumnName="URL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="CtDonHangs">
       <EntityTypeMapping TypeName="ProwinShopModel.CtDonHang">
         <MappingFragment StoreEntitySet="CtDonHang">
@@ -169,6 +186,7 @@
           <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
           <ScalarProperty Name="LuotTruyCap" ColumnName="LuotTruyCap" />
           <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+          <ScalarProperty Name="URL" ColumnName="URL" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -180,6 +198,14 @@
           <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
           <ScalarProperty Name="version" ColumnName="version" />
           <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tags">
+      <EntityTypeMapping TypeName="ProwinShopModel.Tag">
+        <MappingFragment StoreEntitySet="Tag">
+          <ScalarProperty Name="MaTag" ColumnName="MaTag" />
+          <ScalarProperty Name="TenTag" ColumnName="TenTag" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -206,5 +232,13 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <AssociationSetMapping Name="ctTag" TypeName="ProwinShopModel.ctTag" StoreEntitySet="ctTag">
+      <EndProperty Name="BaiViet">
+        <ScalarProperty Name="MaBV" ColumnName="MaBV" />
+      </EndProperty>
+      <EndProperty Name="Tag">
+        <ScalarProperty Name="MaTag" ColumnName="MaTag" />
+      </EndProperty>
+    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>
